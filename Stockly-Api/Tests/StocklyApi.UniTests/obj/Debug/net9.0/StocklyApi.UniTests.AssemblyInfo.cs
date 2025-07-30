@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StocklyApi.UniTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+322b26e826833cb91eb81da3d3843a1b9cba5417")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b41e6ca73748488075606b9366a1a9e51f87e5cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("StocklyApi.UniTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StocklyApi.UniTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

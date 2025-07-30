@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U/ZfAq9md2E=",
+  "dgSpecHash": "0eDicG3+W54=",
   "success": true,
-  "projectFilePath": "/home/dhaniele/Documents/Projects/Stockly/Stockly-API/Stockly-Api/Src/StocklyApi/StocklyApi.csproj",
+  "projectFilePath": "/home/dhaniele/Documents/Projects/Stockly/Stockly-API/Stockly-Api/Src/Stockly.Api/Stockly.Api.csproj",
   "expectedPackageFiles": [
     "/home/dhaniele/.nuget/packages/microsoft.aspnetcore.openapi/9.0.7/microsoft.aspnetcore.openapi.9.0.7.nupkg.sha512",
     "/home/dhaniele/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"

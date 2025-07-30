@@ -80,11 +80,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/dhaniele/Documents/Projects/Stockly/Stockly-API/Stockly-Api/Src/StocklyApi/StocklyApi.csproj",
-      "projectName": "StocklyApi",
-      "projectPath": "/home/dhaniele/Documents/Projects/Stockly/Stockly-API/Stockly-Api/Src/StocklyApi/StocklyApi.csproj",
+      "projectUniqueName": "/home/dhaniele/Documents/Projects/Stockly/Stockly-API/Stockly-Api/Src/Stockly.Api/Stockly.Api.csproj",
+      "projectName": "Stockly.Api",
+      "projectPath": "/home/dhaniele/Documents/Projects/Stockly/Stockly-API/Stockly-Api/Src/Stockly.Api/Stockly.Api.csproj",
       "packagesPath": "/home/dhaniele/.nuget/packages/",
-      "outputPath": "/home/dhaniele/Documents/Projects/Stockly/Stockly-API/Stockly-Api/Src/StocklyApi/obj/",
+      "outputPath": "/home/dhaniele/Documents/Projects/Stockly/Stockly-API/Stockly-Api/Src/Stockly.Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/dhaniele/.nuget/NuGet/NuGet.Config"

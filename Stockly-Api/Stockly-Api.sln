@@ -4,7 +4,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{6C6F6750-D1F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BAFB0954-7992-4C97-881F-3C0F270B5435}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StocklyApi", "Src\StocklyApi\StocklyApi.csproj", "{AEDF4F61-E2E6-4967-84AE-17E877BAC011}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stockly.Api", "Src\Stockly.Api\Stockly.Api.csproj", "{AEDF4F61-E2E6-4967-84AE-17E877BAC011}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StocklyApi.IntegrationTests", "Tests\StocklyApi.IntegrationTests\StocklyApi.IntegrationTests.csproj", "{62B58D4F-462F-4F75-AD6B-9FE7C51F4522}"
 EndProject
