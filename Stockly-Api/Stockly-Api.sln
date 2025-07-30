@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StocklyApi.UniTests", "Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stockly.Adapters.FirebaseDb", "Src\Stockly.Adapters.FirebaseDb\Stockly.Adapters.FirebaseDb.csproj", "{6D7501FE-6D22-421E-93BE-19903EBA8A3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocky.Api.Contracts", "Src\Stocky.Api.Contracts\Stocky.Api.Contracts.csproj", "{995E4AAA-ADE4-4E5A-8F4B-92FEC052E963}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stockly.Api.Contracts", "Src\Stockly.Api.Contracts\Stockly.Api.Contracts.csproj", "{995E4AAA-ADE4-4E5A-8F4B-92FEC052E963}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stockly.Core", "Src\Stockly.Core\Stockly.Core.csproj", "{2ED52718-943E-4DA9-9E57-7F0FFD36D426}"
 EndProject
