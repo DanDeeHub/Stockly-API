@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StocklyApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aea878ea99c3f0bcd92f453684d9ad20d85559ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("StocklyApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StocklyApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
