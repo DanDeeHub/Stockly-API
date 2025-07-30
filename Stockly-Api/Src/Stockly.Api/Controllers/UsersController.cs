@@ -1,3 +1,4 @@
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Stockly.Api.Commands.Users;
@@ -7,9 +8,11 @@ namespace Stockly.Api.Controllers;
 
 [ApiController]
 [Route("v1/users")] 
-public class UsersController(ISender requestSender) : ControllerBase
+[Produces("application/json")]
+public class UsersController(ISender requestSender, IMapper mapper) : ControllerBase
 {
     private readonly ISender _requestSender = requestSender ?? throw new ArgumentNullException(nameof(requestSender));
+    private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
     
     [HttpPost("authenticate")]
     [ProducesResponseType(typeof(UserResponseDto), StatusCodes.Status200OK)]
@@ -20,10 +23,9 @@ public class UsersController(ISender requestSender) : ControllerBase
         var command = new OnAuthenticateUsersCommand(
             dto.Username,
             dto.Password,
-            dto.Email,
-            dto.Role);
+            dto.Email);
         
-        var result = await _requestSender.Send(command);
-        return Ok(result);
+        var resultDto = _mapper.Map<UserResponseDto>(await _requestSender.Send(command));
+        return Ok(resultDto);
     }
 }

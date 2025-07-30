@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using MediatR;
 using Stockly.Api.Commands.Users;
-using Stockly.Core.Entities;
 using Stockly.Core.Interfaces;
 using Stockly.Infrastructure.Api.Contracts.Dtos.Users;
 
@@ -13,12 +12,12 @@ public class OnAuthenticateUsersHandler(IAuthService authService)
     
     public async Task<UserResponseDto> Handle(OnAuthenticateUsersCommand request, CancellationToken cancellationToken)
     {
-        var loginIdentifier = request.userName ?? request.email 
+        var loginIdentifier = request.UserName ?? request.Email 
             ?? throw new ValidationException("Username or email must be provided");
 
         var user = await authService.AuthenticateAsync(
             loginIdentifier,
-            request.password);
+            request.Password);
         
         if (user != null)
             return new UserResponseDto(
@@ -28,6 +27,6 @@ public class OnAuthenticateUsersHandler(IAuthService authService)
                 email: user.Email,
                 role: user.Role,
                 jwtToken: user.JwtToken);
-        throw new Exception("Invalid username or password");
+        return null!;
     }
 }

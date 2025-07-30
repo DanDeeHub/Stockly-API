@@ -3,11 +3,25 @@ using Microsoft.Extensions.Configuration;
 
 namespace Stockly.Infrastructure.Adapter.FirebaseDb.Services;
 
-public abstract class FirestoreService(IConfiguration config)
+public class FirestoreService
 {
-    public FirestoreDb Db { get; } = new FirestoreDbBuilder
+    public FirestoreDb Db { get; }
+    public FirestoreService(IConfiguration config)
     {
-        ProjectId = config["Firebase:ProjectId"],
-        CredentialsPath = config["Firebase:CredentialsPath"]
-    }.Build();
+        ArgumentNullException.ThrowIfNull(config);
+
+        var projectId = config["Firebase:ProjectId"] 
+                        ?? throw new ArgumentNullException(nameof(config), 
+                            "Firebase:ProjectId configuration is missing");
+        
+        var credentialsPath = config["Firebase:CredentialsPath"] 
+                              ?? throw new ArgumentNullException(nameof(config),
+                                  "Firebase:CredentialsPath configuration is missing");
+
+        Db = new FirestoreDbBuilder
+        {
+            ProjectId = projectId,
+            CredentialsPath = credentialsPath
+        }.Build();
+    }
 }

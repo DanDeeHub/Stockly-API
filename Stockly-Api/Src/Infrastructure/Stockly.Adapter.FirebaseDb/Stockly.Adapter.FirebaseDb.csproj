@@ -5,6 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>Stockly.Infrastructure.Adapter.FirebaseDb</RootNamespace>
+        <AssemblyName>Stockly.Infrastructure.Adapter.FirebaseDb</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
