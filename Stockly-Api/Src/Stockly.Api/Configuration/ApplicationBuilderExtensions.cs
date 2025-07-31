@@ -1,3 +1,5 @@
+using Stockly.Api.Configuration.Services.Extensions;
+
 namespace Stockly.Api.Configuration;
 
 public static class ApplicationBuilderExtensions
@@ -23,5 +25,6 @@ public static class ApplicationBuilderExtensions
         app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
+        app.UseNetworkConfiguration();
     }
 }
