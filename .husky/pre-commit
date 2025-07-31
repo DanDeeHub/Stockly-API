@@ -12,7 +12,7 @@ done
 
 # 2️⃣ Check formatting
 echo "🎨 Checking code formatting..."
-dotnet format --verify-no-changes || {
+dotnet format Stockly-Api.sln --verify-no-changes || {
   echo "⚠️  Formatting issues found - applying fixes..."
   dotnet format
   git add -u
