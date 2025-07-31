@@ -4,7 +4,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>Src.StocklyApi.Adapter.FireBaseDb</RootNamespace>
+        <RootNamespace>Stockly.Infrastructure.Api.Contracts</RootNamespace>
     </PropertyGroup>
 
 </Project>

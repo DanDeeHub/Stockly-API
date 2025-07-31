@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Stockly.Infrastructure.Adapter.FirebaseDb</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Google.Cloud.Firestore" Version="3.10.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.0-preview.6.25358.103" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\Stockly.Core\Stockly.Core.csproj" />
+    </ItemGroup>
+    
+</Project>
