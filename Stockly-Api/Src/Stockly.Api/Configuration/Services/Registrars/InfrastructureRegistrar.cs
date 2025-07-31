@@ -14,6 +14,8 @@ public class InfrastructureRegistrar : IServiceRegistrar
         // Firebase services
         services.AddSingleton<FirestoreService>();
         services.AddSingleton<IFirebaseService, FirebaseService>();
+        
+        services.AddScoped<IProductService, FirebaseProductService>();
         services.AddScoped<IUserRepository, FirestoreUserRepository>();
     }
 }

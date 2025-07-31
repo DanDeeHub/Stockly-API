@@ -1,7 +1,6 @@
 using Stockly.Api.Configuration;
 using Stockly.Api.Configuration.Services.Extensions;
 using Stockly.Api.Configuration.Services.Registrars;
-using Stockly.Core.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +12,7 @@ builder.Services.AddStocklyServices(
 
 var app = builder.Build();
 app.UseStocklyConfiguration();
+app.UseNetworkConfiguration();
 await app.RunAsync();
 
 public abstract partial class Program;

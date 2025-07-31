@@ -9,7 +9,7 @@ namespace Stockly.Api.Controllers;
 [ApiController]
 [Route("v1/users")]
 [Produces("application/json")]
-public class UsersController(ISender requestSender, IMapper mapper) : ControllerBase
+public class UserController(ISender requestSender, IMapper mapper) : ControllerBase
 {
     private readonly ISender _requestSender = requestSender ?? throw new ArgumentNullException(nameof(requestSender));
     private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));

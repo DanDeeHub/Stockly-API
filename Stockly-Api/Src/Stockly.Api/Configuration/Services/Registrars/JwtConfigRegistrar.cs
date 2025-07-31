@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using Stockly.Api.Configuration.Services.Interfaces;
 using Stockly.Core.Models;
-using static Stockly.Api.Constants.FirebaseConstants;
+using static Stockly.Infrastructure.Adapter.FirebaseDb.Constants.FirebaseConstants;
 
 namespace Stockly.Api.Configuration.Services.Registrars;
 
