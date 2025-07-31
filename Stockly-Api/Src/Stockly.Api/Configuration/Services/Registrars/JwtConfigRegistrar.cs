@@ -1,4 +1,7 @@
 using System.Security.Cryptography;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Stockly.Api.Configuration.Services.Interfaces;
 using Stockly.Core.Models;
 using static Stockly.Infrastructure.Adapter.FirebaseDb.Constants.FirebaseConstants;
@@ -9,12 +12,34 @@ public class JwtConfigRegistrar : IServiceRegistrar
 {
     public void RegisterServices(IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton(new JwtConfig(
+        var jwtConfig = new JwtConfig(
             Key: GenerateSecureKey(),
             Issuer: Issuer,
             Audience: Audience,
             ExpiryMinutes: 60
-        ));
+        );
+
+        services.AddSingleton(jwtConfig);
+
+        // Add JWT Authentication
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtConfig.Issuer,
+                    ValidAudience = jwtConfig.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(jwtConfig.Key)),
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
+        services.AddAuthorization();
     }
 
     private static string GenerateSecureKey()

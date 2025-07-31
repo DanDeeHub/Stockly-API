@@ -11,31 +11,67 @@ namespace Stockly.Api.Services;
 
 public class JwtTokenService(JwtConfig config) : ITokenService
 {
+    private readonly SymmetricSecurityKey _securityKey = new(Encoding.UTF8.GetBytes(config.Key));
+
     public string GenerateToken(User user)
     {
-        var securityKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(config.Key));
-
-        var credentials = new SigningCredentials(
-            securityKey, SecurityAlgorithms.HmacSha256);
-
-        var claims = new[]
+        var claims = new List<Claim>
         {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Username),
-            new Claim(ClaimTypes.Role, user.Role),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(JwtRegisteredClaimNames.Name, user.Username),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email),
-            new Claim(ClientRole, user.Role)
+            new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new(JwtRegisteredClaimNames.Email, user.Email),
+            new(ClaimTypes.Name, user.Username),
+            new(ClaimTypes.Role, user.Role),
+            new(ClientRole, user.Role)
         };
 
-        var token = new JwtSecurityToken(
-            issuer: config.Issuer,
-            audience: config.Audience,
-            claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(config.ExpiryMinutes),
-            signingCredentials: credentials);
+        var tokenDescriptor = new SecurityTokenDescriptor
+        {
+            Subject = new ClaimsIdentity(claims),
+            Expires = DateTime.UtcNow.AddMinutes(config.ExpiryMinutes),
+            Issuer = config.Issuer,
+            Audience = config.Audience,
+            SigningCredentials = new SigningCredentials(
+                _securityKey,
+                SecurityAlgorithms.HmacSha256)
+        };
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var token = tokenHandler.CreateToken(tokenDescriptor);
+        return tokenHandler.WriteToken(token);
+    }
+
+    public Task<bool> ValidateTokenAsync(string token)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        tokenHandler.ValidateToken(token, new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = config.Issuer,
+            ValidAudience = config.Audience,
+            IssuerSigningKey = _securityKey,
+            ClockSkew = TimeSpan.Zero
+        }, out _);
+        return Task.FromResult(true);
+    }
+
+    public Task<ClaimsPrincipal> GetPrincipalFromTokenAsync(string token)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var principal = tokenHandler.ValidateToken(token, new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = false,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = config.Issuer,
+            ValidAudience = config.Audience,
+            IssuerSigningKey = _securityKey
+        }, out _);
+
+        return Task.FromResult(principal);
     }
 }

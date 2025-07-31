@@ -11,9 +11,9 @@ public class ProductProfile : Profile
     {
         // Request -> Entity (Record-compatible mapping)
         CreateMap<Product, ProductResponseDto>()
-            .ForMember(dest => dest.Status, opt 
+            .ForMember(dest => dest.Status, opt
                 => opt.MapFrom(src => src.Status))
-            .ForMember(dest => dest.StatusColorHex, opt 
+            .ForMember(dest => dest.StatusColorHex, opt
                 => opt.MapFrom(src => ColorToHex(src.StatusColor)));
 
         // IEnumerable support (optimized version)

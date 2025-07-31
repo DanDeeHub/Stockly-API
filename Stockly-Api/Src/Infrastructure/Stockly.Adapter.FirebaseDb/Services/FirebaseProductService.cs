@@ -8,7 +8,7 @@ namespace Stockly.Infrastructure.Adapter.FirebaseDb.Services;
 public class FirebaseProductService(FirestoreService firestore) : IProductService
 {
     private readonly CollectionReference _collection = firestore.Db.Collection("products");
-    
+
     public async Task<Product> GetProductByIdAsync(string productId)
     {
         var snapshot = await _collection
@@ -33,7 +33,7 @@ public class FirebaseProductService(FirestoreService firestore) : IProductServic
     public async Task<Product> CreateProductAsync(Product product)
     {
         var docRef = _collection.Document(product.Id);
-        
+
         var productDocument = new ProductDocument
         {
             Id = product.Id,
@@ -44,7 +44,7 @@ public class FirebaseProductService(FirestoreService firestore) : IProductServic
             StatusColorArgb = product.StatusColor.ToArgb(),
             CreatedAt = Timestamp.FromDateTime(product.CreatedAt)
         };
-    
+
         await docRef.SetAsync(productDocument);
         return product;
     }
