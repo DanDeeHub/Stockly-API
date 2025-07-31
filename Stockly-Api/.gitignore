@@ -301,3 +301,12 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+
+# Firebase credentials
+**/Credentials/
+**/firebase*.json
+**/service-account*.json
+
+# Environment-specific appsettings
+appsettings.Development.json
