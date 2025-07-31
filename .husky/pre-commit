@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# 1️⃣ Run tests sequentially (fixes MSB1008 error)
+echo "🧪 Running tests..."
+for test_project in ./Tests/*Tests/*.csproj; do
+  echo "Testing $test_project..."
+  dotnet test "$test_project" --no-restore --verbosity minimal || {
+    echo "❌ Test failed in $test_project - commit aborted!"
+    exit 1
+  }
+done
+
+# 2️⃣ Check formatting
+echo "🎨 Checking code formatting..."
+dotnet format --verify-no-changes || {
+  echo "⚠️  Formatting issues found - applying fixes..."
+  dotnet format
+  git add -u
+  echo "✅ Fixed formatting - please commit again"
+  exit 1
+}
+
+echo "🚀 All checks passed!"

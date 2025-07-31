@@ -13,8 +13,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Stockly.Core\Stockly.Core.csproj" />
-        <ProjectReference Include="..\Stockly.Api.Contracts\Stockly.Api.Contracts.csproj" />
+      <ProjectReference Include="..\..\Stockly.Core\Stockly.Core.csproj" />
     </ItemGroup>
-    
 </Project>
