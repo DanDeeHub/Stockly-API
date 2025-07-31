@@ -19,9 +19,9 @@ public interface IFirebaseService
     Task<User?> GetUserByIdAsync(string userId, CancellationToken ct = default);
 
     // Batch Operations
-    Task RunTransactionAsync(Func<Transaction, Task> transactionHandler, 
+    Task RunTransactionAsync(Func<Transaction, Task> transactionHandler,
         CancellationToken ct = default);
-    
+
     // Query Support
-    IQueryable<T> Query<T>(string collection) where T : class;  
+    IQueryable<T> Query<T>(string collection) where T : class;
 }

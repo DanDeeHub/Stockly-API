@@ -6,19 +6,19 @@ using Stockly.Infrastructure.Api.Contracts.Dtos.Users;
 
 namespace Stockly.Api.Handlers.Users;
 
-public class OnAuthenticateUsersHandler(IAuthService authService)  
+public class OnAuthenticateUsersHandler(IAuthService authService)
     : IRequestHandler<OnAuthenticateUsersCommand, UserResponseDto>
 {
-    
+
     public async Task<UserResponseDto> Handle(OnAuthenticateUsersCommand request, CancellationToken cancellationToken)
     {
-        var loginIdentifier = request.UserName ?? request.Email 
+        var loginIdentifier = request.UserName ?? request.Email
             ?? throw new ValidationException("Username or email must be provided");
 
         var user = await authService.AuthenticateAsync(
             loginIdentifier,
             request.Password);
-        
+
         if (user != null)
             return new UserResponseDto(
                 id: user.Id,

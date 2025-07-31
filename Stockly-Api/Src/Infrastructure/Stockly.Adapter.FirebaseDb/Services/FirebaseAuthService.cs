@@ -4,7 +4,7 @@ using Stockly.Core.Interfaces;
 
 namespace Stockly.Infrastructure.Adapter.FirebaseDb.Services;
 
-public class FirebaseAuthService(FirestoreService firestoreService) : IAuthService
+public class FirebaseAuthService(FirestoreService firestoreService, ITokenService tokenService) : IAuthService
 {
     private readonly FirestoreDb _db = firestoreService.Db;
 
@@ -15,21 +15,24 @@ public class FirebaseAuthService(FirestoreService firestoreService) : IAuthServi
             .GetSnapshotAsync();
 
         if (snapshot.Count == 0) return null;
-        
+
         var userData = snapshot.Documents[0].ConvertTo<Dictionary<string, object>>();
         var docId = snapshot.Documents[0].Id;
-        
+
         if (userData["password"].ToString() != password)
             return null;
 
-        return new User(
+        var user = new User(
             Id: new Guid(docId),
             Username: username,
             Password: password,
             Email: userData["email"].ToString() ?? string.Empty,
             Role: userData["role"].ToString() ?? string.Empty,
-            JwtToken: userData["jwtToken"].ToString() ?? string.Empty
+            JwtToken: string.Empty
         );
+
+        user = user with { JwtToken = tokenService.GenerateToken(user) };
+        return user;
     }
 
     public async Task<User?> GetUserByIdAsync(string userId)
@@ -41,7 +44,7 @@ public class FirebaseAuthService(FirestoreService firestoreService) : IAuthServi
         if (!snapshot.Exists) return null;
 
         var userData = snapshot.ConvertTo<Dictionary<string, object>>();
-        
+
         return new User(
             Id: new Guid(userId),
             Username: userData["username"].ToString() ?? string.Empty,

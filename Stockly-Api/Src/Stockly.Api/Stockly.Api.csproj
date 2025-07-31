@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="15.0.1" />
+        <PackageReference Include="AutoMapper" Version="14.0.0" />
         <PackageReference Include="MediatR" Version="12.5.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.7"/>
         <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.13.0" />
@@ -17,9 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Infrastructure\Stockly.Adapter.FirebaseDb\Stockly.Adapter.FirebaseDb.csproj" />
       <ProjectReference Include="..\Infrastructure\Stockly.Api.Contracts\Stockly.Api.Contracts.csproj" />
-      <ProjectReference Include="..\Stockly.Adapter.FirebaseDb\Stockly.Adapter.FirebaseDb.csproj" />
+      <ProjectReference Include="..\Infrastructure\Stockly.Adapter.FirebaseDb\Stockly.Adapter.FirebaseDb.csproj" />
     </ItemGroup>
 
 </Project>

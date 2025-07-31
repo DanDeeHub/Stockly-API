@@ -8,7 +8,7 @@ namespace Stockly.Infrastructure.Adapter.FirebaseDb.Services;
 public class FirebaseService : IFirebaseService
 {
     private readonly FirestoreDb _db;
-    
+
     public FirebaseService(IConfiguration configuration)
     {
         var firebaseConfig = configuration.GetSection("Firebase");

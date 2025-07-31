@@ -10,11 +10,11 @@ public class FirestoreService
     {
         ArgumentNullException.ThrowIfNull(config);
 
-        var projectId = config["Firebase:ProjectId"] 
-                        ?? throw new ArgumentNullException(nameof(config), 
+        var projectId = config["Firebase:ProjectId"]
+                        ?? throw new ArgumentNullException(nameof(config),
                             "Firebase:ProjectId configuration is missing");
-        
-        var credentialsPath = config["Firebase:CredentialsPath"] 
+
+        var credentialsPath = config["Firebase:CredentialsPath"]
                               ?? throw new ArgumentNullException(nameof(config),
                                   "Firebase:CredentialsPath configuration is missing");
 

@@ -14,7 +14,7 @@ public class JwtTokenService(JwtConfig config) : ITokenService
     {
         var securityKey = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(config.Key));
-        
+
         var credentials = new SigningCredentials(
             securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -22,7 +22,9 @@ public class JwtTokenService(JwtConfig config) : ITokenService
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Username),
             new Claim(ClaimTypes.Role, user.Role),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new Claim(JwtRegisteredClaimNames.Name, user.Username),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email)
         };
 
         var token = new JwtSecurityToken(

@@ -5,20 +5,15 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>Stockly.Infrastructure.Adapter.FirebaseDb</RootNamespace>
-        <AssemblyName>Stockly.Infrastructure.Adapter.FirebaseDb</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Google.Cloud.Firestore" Version="3.10.0" />
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.0-preview.6.25358.103" />
+        <PackageReference Include="Google.Cloud.Firestore" Version="3.10.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.0-preview.6.25358.103" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Stockly.Core\Stockly.Core.csproj" />
+        <ProjectReference Include="..\..\Stockly.Core\Stockly.Core.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Store\" />
-    </ItemGroup>
-
+    
 </Project>

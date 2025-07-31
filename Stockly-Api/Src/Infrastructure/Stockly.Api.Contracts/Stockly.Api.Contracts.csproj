@@ -5,7 +5,6 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>Stockly.Infrastructure.Api.Contracts</RootNamespace>
-        <AssemblyName>Stockly.Infrastructure.Api.Contracts</AssemblyName>
     </PropertyGroup>
 
 </Project>
