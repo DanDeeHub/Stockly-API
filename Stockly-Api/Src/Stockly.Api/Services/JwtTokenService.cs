@@ -5,6 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Stockly.Core.Entities;
 using Stockly.Core.Interfaces;
 using Stockly.Core.Models;
+using static Stockly.Api.Constants.TokenConstants;
 
 namespace Stockly.Api.Services;
 
@@ -24,7 +25,8 @@ public class JwtTokenService(JwtConfig config) : ITokenService
             new Claim(ClaimTypes.Role, user.Role),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new Claim(JwtRegisteredClaimNames.Name, user.Username),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email)
+            new Claim(JwtRegisteredClaimNames.Email, user.Email),
+            new Claim(ClientRole, user.Role)
         };
 
         var token = new JwtSecurityToken(

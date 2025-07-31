@@ -21,11 +21,6 @@ public class OnAuthenticateUsersHandler(IAuthService authService)
 
         if (user != null)
             return new UserResponseDto(
-                id: user.Id,
-                username: user.Username,
-                password: user.Password,
-                email: user.Email,
-                role: user.Role,
                 jwtToken: user.JwtToken);
         return null!;
     }
