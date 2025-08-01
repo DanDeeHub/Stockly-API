@@ -1,0 +1,11 @@
+{
+  "solution": {
+    "path": "Stockly-Api.sln",
+    "projects": [
+      "Stockly.Api/Stockly.Api.csproj",
+      "Stockly.Core/Stockly.Core.csproj",
+      "Infrastructure/Stockly.Api.Contracts/Stockly.Api.Contracts.csproj",
+      "Infrastructure/Stockly.Adapter.FirebaseDb/Stockly.Adapter.FirebaseDb.csproj"
+    ]
+  }
+}

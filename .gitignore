@@ -310,3 +310,6 @@ __pycache__/
 
 # Environment-specific appsettings
 appsettings.Development.json
+.env*
+secrets/
+.secrets/

@@ -1,7 +1,4 @@
 {
-  "devDependencies": {
-    "husky": "^9.1.7"
-  },
   "name": "stockly-api",
   "version": "1.0.0",
   "main": "index.js",
@@ -12,5 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
 }

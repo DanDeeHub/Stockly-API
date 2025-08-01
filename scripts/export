@@ -1,0 +1,18 @@
+export FIREBASE_CREDS_BASE64=$(cat .secrets/service-account.json | base64 -w 0)
+
+make up  # Generates .env AND starts containers
+make up  # Reuses existing .env
+
+docker compose -f docker-compose.dev.yml up --build
+
+# 1. Ensure .env exists
+make dev or make prod  # Only if missing
+
+# 2. Build with variables
+docker compose -f docker-compose.dev.yml --env-file .env.development build
+OR
+docker compose -f docker-compose.dev.yml --env-file .env.development build
+# 3. Start
+docker compose -f docker-compose.dev.yml --env-file .env.development up
+OR
+docker compose -f docker-compose.dev.yml --env-file .env.development up

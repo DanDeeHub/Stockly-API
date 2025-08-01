@@ -18,8 +18,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Infrastructure\Stockly.Api.Contracts\Stockly.Api.Contracts.csproj" />
       <ProjectReference Include="..\Infrastructure\Stockly.Adapter.FirebaseDb\Stockly.Adapter.FirebaseDb.csproj" />
+      <ProjectReference Include="..\Infrastructure\Stockly.Api.Contracts\Stockly.Api.Contracts.csproj" />
+      <ProjectReference Include="..\Stockly.Core\Stockly.Core.csproj" />
     </ItemGroup>
 
 </Project>

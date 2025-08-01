@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  stockly-api:
+    image: stockly-api
+    volumes:
+      - ~/docker-secrets/service-account.json:/run/secrets/firebase_creds:ro
+    environment:
+      - FIREBASE_CREDS_PATH=/run/secrets/firebase_creds
+    ports:
+      - "5103:5103"

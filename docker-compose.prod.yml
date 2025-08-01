@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  stockly-api:
+    image: your-registry/stockly-api:prod
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - Firebase__ProjectId=stockly-db
+      #- Firebase__CredentialsJson={"type": "service_account", "project_id": "stockly-db", ...}  # Full JSON
+    ports:
+      - "80:5103"
