@@ -9,9 +9,12 @@ services:
       - DOTNET_RUNNING_IN_CONTAINER=true
       - Firebase__ProjectId=stockly-db
       - Firebase__CredentialsBase64=${FIREBASE_CREDS_BASE64}  # Injected at runtime
+      - ASPNETCORE_URLS=http://+:5200
+      - Kestrel__Ports__Main=5200
     ports:
-      - "5103:5103"
-    user: "1000:1000"
+      - "5200:5200"
+    user: root
+    #user: "1000:1000"
     restart: unless-stopped
 
 # No 'secrets:' or volume mounts needed!

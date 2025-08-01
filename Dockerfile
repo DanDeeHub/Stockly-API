@@ -42,6 +42,7 @@ USER 1000
 
 # Expose the ports
 EXPOSE 5103
+EXPOSE 5200
 
 # Set environment variables
 #ENV ASPNETCORE_ENVIRONMENT=Production
