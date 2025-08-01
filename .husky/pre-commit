@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# 1️⃣ Run tests sequentially (fixes MSB1008 error)
+# 1️⃣ Run tests sequentially
 echo "🧪 Running tests..."
 for test_project in ./Tests/*Tests/*.csproj; do
   echo "Testing $test_project..."
@@ -10,11 +10,11 @@ for test_project in ./Tests/*Tests/*.csproj; do
   }
 done
 
-# 2️⃣ Check formatting
+# 2️⃣ Check formatting (explicitly use the correct .sln file)
 echo "🎨 Checking code formatting..."
 dotnet format Stockly-Api.sln --verify-no-changes || {
   echo "⚠️  Formatting issues found - applying fixes..."
-  dotnet format
+  dotnet format Stockly-Api.sln  # Explicitly specify solution file here too
   git add -u
   echo "✅ Fixed formatting - please commit again"
   exit 1

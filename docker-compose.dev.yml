@@ -1,0 +1,27 @@
+services:
+  stockly-api:
+    container_name: stockly-api
+    image: stockly-api
+    build:
+      context: /mnt/NAS-Storage/docker/stockly/Stockly-API
+      dockerfile: Dockerfile
+    volumes:
+      - /mnt/NAS-Storage/docker/stockly/Stockly-API/logs:/app/logs
+      - /mnt/NAS-Storage/docker/stockly/Stockly-API/appsettings.Development.json:/app/appsettings.Development.json
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Firebase__ProjectId=stockly-db
+      - Firebase__CredentialsPath=/run/secrets/service-account.json
+    secrets:
+      - source: firebase_creds
+        target: service-account.json
+        uid: "1000"
+        mode: 0440
+    ports:
+      - "5103:5103"
+    user: "1000"  # Matches Dockerfile USER
+    restart: unless-stopped
+
+secrets:
+  firebase_creds:
+    file: .secrets/service-account.json
