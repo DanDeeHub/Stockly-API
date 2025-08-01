@@ -1,27 +1,17 @@
+# docker-compose.dev.yml
 services:
   stockly-api:
     container_name: stockly-api
     image: stockly-api
-    build:
-      context: /mnt/NAS-Storage/docker/stockly/Stockly-API
-      dockerfile: Dockerfile
-    volumes:
-      - /mnt/NAS-Storage/docker/stockly/Stockly-API/logs:/app/logs
-      - /mnt/NAS-Storage/docker/stockly/Stockly-API/appsettings.Development.json:/app/appsettings.Development.json
+    build: .
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - DOTNET_RUNNING_IN_CONTAINER=true
       - Firebase__ProjectId=stockly-db
-      - Firebase__CredentialsPath=/run/secrets/service-account.json
-    secrets:
-      - source: firebase_creds
-        target: service-account.json
-        uid: "1000"
-        mode: 0440
+      - Firebase__CredentialsBase64=${FIREBASE_CREDS_BASE64}  # Injected at runtime
     ports:
       - "5103:5103"
-    user: "1000"  # Matches Dockerfile USER
+    user: "1000:1000"
     restart: unless-stopped
 
-secrets:
-  firebase_creds:
-    file: .secrets/service-account.json
+# No 'secrets:' or volume mounts needed!

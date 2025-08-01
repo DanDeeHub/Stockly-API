@@ -4,9 +4,14 @@ namespace Stockly.Api.Configuration.Services.Extensions;
 
 public static class NetworkConfigurationExtensions
 {
-    public static IServiceCollection AddNetworkServices(this IServiceCollection services, IConfiguration configuration)
+    public static void AddNetworkServices(this IServiceCollection services, IConfiguration configuration)
     {
-        // Add CORS for local network
+        ConfigureCors(services);
+        ConfigureKestrel(services, configuration);
+    }
+
+    private static void ConfigureCors(IServiceCollection services)
+    {
         services.AddCors(options =>
         {
             options.AddPolicy("AllowLocalNetwork", policy =>
@@ -22,19 +27,29 @@ public static class NetworkConfigurationExtensions
                     .SetIsOriginAllowedToAllowWildcardSubdomains();
             });
         });
-
-        // Configure Kestrel
-        services.Configure<KestrelServerOptions>(options =>
-        {
-            options.ListenAnyIP(5103); // Listen on all interfaces
-        });
-
-        return services;
     }
 
-    public static IApplicationBuilder UseNetworkConfiguration(this IApplicationBuilder app)
+    private static void ConfigureKestrel(IServiceCollection services, IConfiguration configuration)
+    {
+        // Get ports from config with defaults
+        var mainPort = configuration.GetValue("Kestrel:Ports:Main", 5103);
+        var metricsPort = configuration.GetValue("Kestrel:Ports:Metrics", 0); // 0 = disabled
+
+        services.Configure<KestrelServerOptions>(options =>
+        {
+            options.ListenAnyIP(mainPort);
+
+            // Add metrics endpoint if configured
+            if (metricsPort > 0 && metricsPort != mainPort)
+            {
+                options.ListenAnyIP(metricsPort);
+                configuration["Metrics:Endpoint"] = $":{metricsPort}";
+            }
+        });
+    }
+
+    public static void UseNetworkConfiguration(this IApplicationBuilder app)
     {
         app.UseCors("AllowLocalNetwork");
-        return app;
     }
 }

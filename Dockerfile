@@ -34,11 +34,6 @@ RUN dotnet publish "Stockly.Api.csproj" -c Release -o /app/publish /p:UseAppHost
 FROM mcr.microsoft.com/dotnet/nightly/aspnet:9.0.7 AS final
 WORKDIR /app
 
-# Add this line to ensure the secrets directory exists
-RUN mkdir -p /run/secrets && \
-    chown -R 1000:1000 /run/secrets && \
-    chmod -R 750 /run/secrets
-
 # Copy the published application from the build stage
 COPY --from=publish /app/publish .
 
@@ -49,6 +44,6 @@ USER 1000
 EXPOSE 5103
 
 # Set environment variables
-ENV ASPNETCORE_ENVIRONMENT=Production
+#ENV ASPNETCORE_ENVIRONMENT=Production
 
 ENTRYPOINT ["dotnet", "Stockly.Api.dll"]
