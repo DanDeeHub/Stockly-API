@@ -16,5 +16,3 @@ services:
     user: root
     #user: "1000:1000"
     restart: unless-stopped
-
-# No 'secrets:' or volume mounts needed!
