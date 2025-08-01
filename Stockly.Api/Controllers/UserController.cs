@@ -7,7 +7,7 @@ using Stockly.Infrastructure.Api.Contracts.Dtos.Users;
 namespace Stockly.Api.Controllers;
 
 [ApiController]
-[Route("v1/users")]
+[Route("/v1/users")]
 [Produces("application/json")]
 public class UserController(ISender requestSender, IMapper mapper) : ControllerBase
 {
